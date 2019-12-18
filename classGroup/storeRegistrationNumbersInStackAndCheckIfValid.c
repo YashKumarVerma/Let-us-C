@@ -5,14 +5,14 @@
 
 #define MAX 10
 
-char stack[MAX][9];
-char data[9];
+char stack[MAX][10];
+char data[10];
 int top = -1;
 
-int push(char data[9]);
+int push(char data[10]);
 int pop();
 int displayStack();
-int checkReg(char s[9]);
+int checkReg(char s[10]);
 
 int main(){
     int ch, x;
@@ -27,40 +27,23 @@ int main(){
             case 1:
                 printf("\nEnter a registration number to push : \n");
                 scanf(" %s", data);
-
                 x = push(data);
-                if(x==1){
-                    printf("\n Registraiton number %s saved into stack \n", data);
-                }  
-                else if(x==2){
-                    printf("\n Invalid Registration Number \n");
-                }
-                else{
-                    printf("\n Stack Overflow\n");
-                }
                 break;
+
             case 2:
                 printf("\n\nPOPPING OUT REGISTRATION NUMBER\n");
-
-                if(pop()){
-                    printf("\n Registration number %s removed from stack \n", data);
-                }
-
-                else{
-                    printf("\n Stack already empty\n");                    
-                }
+                x = pop();
                 break;
+
             case 3:
-                printf("\nDisplaying top element of stack : \n");
-                
-                if(!displayStack()){
-                    printf("\nStack empty \n");
-                }
-
+                printf("\nDisplaying top element of stack : \n");                
+                x = displayStack();
                 break;
+
             case 4:
                 exit(0);
                 break;
+
             default:
                 printf("\nEnter a valid Selection !\n");
         }
@@ -70,47 +53,47 @@ int main(){
     return 0;
 }
 
-int push(char data[9]){
+int push(char data[10]){
     if(top == MAX){
-        return 0;
+        printf("\n Stack Full \n");
     }else{
 
         if(checkReg(data)==1){
             top = top + 1;
             strcpy(stack[top], data);
-            return 1;
+            printf("\n Registration number %s added to stack \n", stack[top]);
         }
         else{
-            return 2;
+            printf("\n Invalid Registration Number \n");
         }
     }
+    return 0;
 }
 
 int pop(){
     if(top == -1){
-        return 0;
+        printf("\n Stack Empty \n");
     }
     else{
-        strcpy(data, stack[top]);
+        printf("\n Registration number %s removed \n", stack[top]);
         top = top - 1;
-        return 1;
     }
+    return 0;
 }
 
 int displayStack(){
     int i;
-    strcpy(data, stack[top]);
     if(top == -1){
-        return 0;
+        printf("\n Stack empty ! \n");
     }
     else{
-        printf(" %s \n", data);
+        printf(" %s \n", stack[top]);
     }
-    return 1;
+    return 0;
 }
 
 
-int checkReg(char s[9]){
+int checkReg(char s[10]){
         // length check
     if(strlen(s) != 9){
         return 0;
