@@ -43,7 +43,7 @@ int main(){
                 printf("\n\nPOPPING OUT REGISTRATION NUMBER\n");
 
                 if(pop()){
-                    printf("\n Registration number %s saved into stack \n", data);
+                    printf("\n Registration number %s removed from stack \n", data);
                 }
 
                 else{
@@ -51,7 +51,7 @@ int main(){
                 }
                 break;
             case 3:
-                printf("\nDisplaying all elements of stack : \n");
+                printf("\nDisplaying top element of stack : \n");
                 
                 if(!displayStack()){
                     printf("\nStack empty \n");
